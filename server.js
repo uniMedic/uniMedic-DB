@@ -16,3 +16,5 @@ app.use('/user', UserRouter)
 app.listen(config.portExpress, () => {
     console.log(`Servidor corriendo en el puerto ${config.portExpress}`);
 })
+
+// servidor
