@@ -14,7 +14,7 @@ Content-Type: application/json
     "confirmPassword":"user98",
     "dateOfBirth":"2000-01-01T05:00:00.000Z",
     "direction": "Puente Piedra",
-    "isMedic": "false",
+    "isMedic": "false"
 }
 
 POST {{api}}/user/signup
@@ -27,7 +27,7 @@ Content-Type: application/json
     "confirmPassword":"medic98",
     "dateOfBirth":"2000-01-01T05:00:00.000Z",
     "direction": "SJL",
-    "isMedic": "true",
+    "isMedic": "true"
 }
 
 
