@@ -1,0 +1,41 @@
+@api = http://localhost:5000
+
+# obtener todas las tareas
+GET {{api}}/user
+
+# creando un usurio NO MEDICO
+POST {{api}}/user/signup
+Content-Type: application/json
+
+{
+    "name": "Cristhian Wiki", 
+    "email": "user@gmail.com",
+    "password":"user98",
+    "confirmPassword":"user98",
+    "dateOfBirth":"2000-01-01T05:00:00.000Z",
+    "direction": "Puente Piedra",
+    "isMedic": "false",
+}
+
+POST {{api}}/user/signup
+Content-Type: application/json
+
+{
+    "name": "Ronaldo Lopez", 
+    "email": "medic@gmail.com",
+    "password":"medic98",
+    "confirmPassword":"medic98",
+    "dateOfBirth":"2000-01-01T05:00:00.000Z",
+    "direction": "SJL",
+    "isMedic": "true",
+}
+
+
+//LOGIN
+POST {{api}}/user/signin
+Content-Type: application/json
+
+{
+    "email": "medic@gmail.com",
+    "password":"medic98"
+}
