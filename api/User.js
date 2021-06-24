@@ -6,22 +6,31 @@ const User = require("./../models/User");
 
 // Password handler
 const bcrypt = require("bcrypt");
-
+const idMedic = [300, 301, 302, 303, 304, 305, 306];
+let idPatient = [200, 201, 202, 203, 204, 205, 206, 207];
 // Signup
 router.post("/signup", (req, res) => {
-  let { name, email, password, dateOfBirth, direction, isMedic } = req.body;
+  let { name, email, password, dateOfBirth, direction, isMedic, userID} = req.body;
   name = name.trim();
   email = email.trim();
   password = password.trim();
   dateOfBirth = dateOfBirth.trim();
   direction = direction.trim();
+  userID = userID.trim();
+  //hospital = hospital.trim();
+
 
   if (name == "" || email == "" || password == "" || dateOfBirth == "" || direction == "") {
     res.json({
       status: "FAILED",
       message: "Hay campos vacíos!",
     });
-  } else if (!/^[a-zA-Z ]*$/.test(name)) {
+  }/* else if (isMedic == true && (specialism == "" || hospital == "")) {
+    res.json({
+      status: "FAILED",
+      message: "Hay campos vacíos!",
+    });
+  }*/ else if (!/^[a-zA-Z ]*$/.test(name)) {
     res.json({
       status: "FAILED",
       message: "Nombre inválido",
@@ -42,7 +51,21 @@ router.post("/signup", (req, res) => {
       message: "Contraseña muy corta!",
     });
   } else {
+    if(isMedic == "false"){
+      userID = idPatient[0];
+      idPatient.shift();
+    }
+    else if(isMedic == "true"){
+      userID = idMedic[0];
+      idMedic.shift();
+    }
     // Checking if user already exists
+    
+    /*User.find({ isMedic: false })
+      .then((array) => {
+        const a = 100 + array.length
+      },
+    */
     User.find({ email })
       .then((result) => {
         if (result.length) {
@@ -53,7 +76,14 @@ router.post("/signup", (req, res) => {
           });
         } else {
           // Try to create new user
-
+          //const n = 0;
+         //const a =  100 + User.find({isMedic: false}).length;
+          /*if(isMedic == true){
+            userID = 100 + User.find({isMedic:true}).count();
+          }
+          if(isMedic == false){
+            userID = 300 + User.find({isMedic:false}).count();
+          }*/
           // password handling
           const saltRounds = 10;
           bcrypt
@@ -65,7 +95,8 @@ router.post("/signup", (req, res) => {
                 password: hashedPassword,
                 dateOfBirth,
                 direction,
-                isMedic
+                isMedic,
+                userID
               });
 
               newUser
@@ -80,14 +111,14 @@ router.post("/signup", (req, res) => {
                 .catch((err) => {
                   res.json({
                     status: "FAILED",
-                    message: "Ha ocurrido un error mientras se guardaban los datos del usuario!",
+                    message: 'Ha ocurrido un error mientras se guardaban los datos del usuario!',
                   });
                 });
             })
             .catch((err) => {
               res.json({
                 status: "FAILED",
-                message: "Se produjo un error al hacer hash de la contraseña!",
+                message: 'Se produjo un error al hacer hash de la contraseña!',
               });
             });
         }

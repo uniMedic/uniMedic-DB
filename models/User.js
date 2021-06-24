@@ -5,9 +5,10 @@ const UserSchema = new Schema({
     name: String,
     email: String,
     password: String,
-    dateOfBirth: Date,
+    dateOfBirth: Date, 
     direction: String,
-    isMedic: Boolean
+    isMedic: Boolean, 
+    userID: Number, //automatically generated
 });
 
 const User = mongoose.model('User', UserSchema);

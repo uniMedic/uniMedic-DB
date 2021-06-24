@@ -17,6 +17,10 @@ const diagnosticSchema = new Schema({
 	},
 	dateOfDiagnostic: {
 		type: Date
+	},
+	//agregado para vincular con el paciente
+	patientID: {
+		type: String
 	}
 });
 module.exports = model('Diagnostic', diagnosticSchema);

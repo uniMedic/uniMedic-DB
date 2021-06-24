@@ -2,8 +2,24 @@
 
 # obtener todas las tareas
 GET {{api}}/user
+GET {{api}}/stadistic
 
-# creando un usurio NO MEDICO
+#creando estadistica para un usuario(medico)
+POST {{api}}/stadistic/performance
+Content-Type: application/json
+
+{
+    "userID": "300",
+    "state": "0",
+    "specialism": "neurologo",
+    "hospital": "Cayetano Heredia",
+    "patientID": ["200"],
+    //"patientID": "0",
+    "starts": "0"
+}
+
+
+# creando un usuario NO MEDICO
 POST {{api}}/user/signup
 Content-Type: application/json
 
@@ -14,9 +30,10 @@ Content-Type: application/json
     "confirmPassword":"user98",
     "dateOfBirth":"2000-01-01T05:00:00.000Z",
     "direction": "Puente Piedra",
-    "isMedic": "false"
+    "isMedic": "false",
+    "userID": "0"
 }
-
+       
 POST {{api}}/user/signup
 Content-Type: application/json
 
@@ -27,9 +44,9 @@ Content-Type: application/json
     "confirmPassword":"medic98",
     "dateOfBirth":"2000-01-01T05:00:00.000Z",
     "direction": "SJL",
-    "isMedic": "true"
+    "isMedic": "true",
+    "userID": "0"
 }
-
 
 //LOGIN
 POST {{api}}/user/signin
