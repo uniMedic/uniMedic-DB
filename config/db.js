@@ -9,7 +9,8 @@ const uri = `mongodb://127.0.0.1:27017/${config.nameDatabase}`;
 
 mongoose.connect(uri,{
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
+  useCreateIndex: true
 });
    
 mongoose.connection.on('open', _ => {

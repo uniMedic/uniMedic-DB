@@ -1,11 +1,11 @@
 const { Schema, model } = require('mongoose');
 
 const HistorySchema = new Schema ({
-     userID: {
+     patientID: {
          type: String
      },
-     diagnosticID: {
-         type: String,
+     diagnosisID: {
+         type: [String],
          unique: true,
          required: true
      }

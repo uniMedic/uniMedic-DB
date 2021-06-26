@@ -3,20 +3,23 @@ const { Schema, model } = require('mongoose');
 // Para guardar una imagen en mongoDB
 // https://stackoverflow.com/questions/29780733/store-an-image-in-mongodb-using-node-js-express-and-mongoose
 
-const diagnosticSchema = new Schema({
-	diagnosticID: {
+const diagnosisSchema = new Schema({
+	diagnosisID: {
 		type: String,
 		required: true
 	},
-	textDiagnostic: {
+	textDiagnosis: {
 		type: String
 	},
-	imageDiagnostic: {
+	imageDiagnosis: {
 		data: Buffer,
 		contentType: String
 	},
-	dateOfDiagnostic: {
+	dateOfDiagnosis: {
 		type: Date
+	},
+	medicValidatorID: {
+		type: String
 	}
 });
-module.exports = model('Diagnostic', diagnosticSchema);
+module.exports = model('Diagnosis', diagnosisSchema);

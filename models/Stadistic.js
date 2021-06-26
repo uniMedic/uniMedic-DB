@@ -1,16 +1,16 @@
 const { Schema, model } = require('mongoose');
 
 const statisticSchema = new Schema ({
-     userID: {
+     medicID: {
          type: String,
          required: true
      },
      timeOfService: Number,
      specialism: String ,
      hospital: String,
-     patientID: {
+     patientsID: {
          type: [String] 
      },
-     starts: Number
+     stars: Number
 })
 module.exports= model('Stadistic', statisticSchema);

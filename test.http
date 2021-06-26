@@ -8,6 +8,7 @@ POST {{api}}/user/signup
 Content-Type: application/json
 
 {
+    "userID": "100",
     "name": "Cristhian Wiki", 
     "email": "user@gmail.com",
     "password":"user98",
@@ -21,6 +22,21 @@ POST {{api}}/user/signup
 Content-Type: application/json
 
 {
+    "userID": "300",
+    "name": "Abraham", 
+    "email": "abraham@gmail.com",
+    "password":"user98",
+    "confirmPassword":"user98",
+    "dateOfBirth":"2000-01-01T05:00:00.000Z",
+    "direction": "Puente Piedra",
+    "isMedic": "false"
+}
+
+POST {{api}}/user/signup
+Content-Type: application/json
+
+{
+    "userID": "200",
     "name": "Ronaldo Lopez", 
     "email": "medic@gmail.com",
     "password":"medic98",
@@ -38,4 +54,85 @@ Content-Type: application/json
 {
     "email": "medic@gmail.com",
     "password":"medic98"
+}
+
+
+//CREAR HISTORIAL
+POST {{api}}/history/register
+Content-Type: application/json
+
+{
+    "patientID": "100",
+    "diagnosisID":"150"
+}
+
+//ACTUALIZAR HISTORIAL
+POST {{api}}/history/update
+Content-Type: application/json
+
+{
+    "patientID": "100",
+    "diagnosisID":"151"
+}
+
+
+// CREAR ESTADÍSTICA
+POST {{api}}/stadistic/register
+Content-Type: application/json
+
+{
+    "medicID":  "200",
+    "timeOfService": "2",
+    "specialism": "Neurología",
+    "hospital": "Cayetano Heredia",
+    "patientsID": "100",
+    "stars": "5"
+}
+
+// ACTUALIZAR ESTADÍSTICA
+POST {{api}}/stadistic/update
+Content-Type: application/json
+
+{
+    "medicID":  "200",
+    "timeOfService": "4",
+    "specialism": "Neurología",
+    "hospital": "Rezola",
+    "patientsID": "300",
+    "stars": "5"
+}
+
+// CREAR DIAGNÓSTICO
+POST {{api}}/diagnosis/register
+Content-Type: application/json
+
+{
+    "diagnosisID":  "150",
+    "textDiagnosis": "Leve lesión cerebral en la zona parietal",
+    "imageDiagnosis": "soy una imagen codificada en 64bits",
+    "dateOfDiagnosis": "2000-01-01T05:00:00.000Z",
+    "medicValidatorID": ""
+}
+
+POST {{api}}/diagnosis/register
+Content-Type: application/json
+
+{
+    "diagnosisID":  "151",
+    "textDiagnosis": "Fuertes daños pulmonares",
+    "imageDiagnosis": "soy una imagen codificada en 64bits",
+    "dateOfDiagnosis": "2000-01-01T05:00:00.000Z",
+    "medicValidatorID": "200"
+}
+
+// ACTUALIZAR DIAGNÓSTICO
+POST {{api}}/diagnosis/update
+Content-Type: application/json
+
+{
+    "diagnosisID":  "150",
+    "textDiagnosis": "Leve lesión cerebral en la zona parietal",
+    "imageDiagnosis": "soy una imagen codificada en 64bits",
+    "dateOfDiagnosis": "2000-01-01T05:00:00.000Z",
+    "medicValidatorID": ""
 }
