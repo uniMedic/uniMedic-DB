@@ -12,7 +12,7 @@ Especificaciones:
 - Los diagnósticos pueden ser validados o no por un médico
 - Los pacientes pueden calificar a los médicos con hasta 5 estrellas
 - Los pacientes y médicos pueden descargar el diagnóstico del paciente (en formato PDF)
-- Primero se crea el diagnóstico y luego se guarda en la colección Historial
+- Primero se crea el diagnóstico y luego se guarda en la colección Historial (sólo para las pruebas, cree primero el Historial)
 
 Rutas actuales:
 
