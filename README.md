@@ -24,7 +24,7 @@ Rutas actuales:
 TODO:
 - ⬜️ Obtener Historial de todos los pacientes (GET)
 - ⬜️ Obtener Historial por paciente (GET)
-- ⬜️ Obtener todos los Usuarios (GET)
+- ✅ Obtener todos los Usuarios (GET)
 - ⬜️ Obtener Diagnósticos de un determinado Historial de un paciente (GET)
 - ⬜️ Obtener Estadísticas de un determinado médico (GET)
 - ⬜️ Descargar PDF de diagnóstico por usuario (GET y más)

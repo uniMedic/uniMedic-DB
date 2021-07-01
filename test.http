@@ -1,7 +1,7 @@
 @api = http://localhost:5000
 
 # obtener todas las tareas
-GET {{api}}/user
+GET {{api}}/user/patients
 
 # creando un usurio NO MEDICO
 POST {{api}}/user/signup

@@ -9,13 +9,28 @@ const bcrypt = require('bcrypt');
 
 // Signup
 router.post('/signup', (req, res) => {
-	let { userID, name, email, password, dateOfBirth, direction, isMedic } = req.body;
+	let {
+		userID,
+		dateOfBirth,
+		direction,
+		email,
+		hospital,
+		isMedic,
+		name,
+		password,
+		profileImage,
+		speciality,
+		timeContract
+	} = req.body;
 	userID = userID.trim();
 	name = name.trim();
 	email = email.trim();
 	password = password.trim();
 	dateOfBirth = dateOfBirth.trim();
 	direction = direction.trim();
+	hospital = hospital.trim();
+	speciality = speciality.trim();
+	timeContract = timeContract.trim();
 
 	if (userID == '' || name == '' || email == '' || password == '' || dateOfBirth == '' || direction == '') {
 		res.json({
@@ -54,22 +69,24 @@ router.post('/signup', (req, res) => {
 					});
 				} else {
 					// Try to create new user
-					
+
 					// password handling
 					const saltRounds = 10;
 					bcrypt
 						.hash(password, saltRounds)
 						.then((hashedPassword) => {
-							
-
 							const newUser = new User({
 								userID,
-								name,
-								email,
-								password: hashedPassword,
 								dateOfBirth,
 								direction,
-								isMedic
+								email,
+								hospital,
+								isMedic,
+								name,
+								password: hashedPassword,
+								profileImage,
+								speciality,
+								timeContract
 							});
 
 							newUser
@@ -111,7 +128,6 @@ router.post('/signin', (req, res) => {
 	let { email, password } = req.body;
 	email = email.trim();
 	password = password.trim();
-
 	if (email == '' || password == '') {
 		res.json({
 			status: 'FAILED',
@@ -123,7 +139,6 @@ router.post('/signin', (req, res) => {
 			.then((data) => {
 				if (data.length) {
 					// User exists
-
 					const hashedPassword = data[0].password;
 					bcrypt
 						.compare(password, hashedPassword)
@@ -162,6 +177,21 @@ router.post('/signin', (req, res) => {
 				});
 			});
 	}
+});
+
+router.get("/patients", function(req, res) {
+	User.find({isMedic: false}, function(err, collection) {
+		 if(err) {
+			  console.log(err);
+		 } else {
+			//res.render("page", {collection: collection});
+			res.json({
+				status: 'SUCCESS',
+				message: 'Obtención satisfactoria de usuarios',
+				data: collection
+			});
+		 }
+	});
 });
 
 module.exports = router;
