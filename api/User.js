@@ -31,6 +31,7 @@ router.post('/signup', (req, res) => {
 	hospital = hospital.trim();
 	speciality = speciality.trim();
 	timeContract = timeContract.trim();
+	var lastUse = new Date();
 
 	if (userID == '' || name == '' || email == '' || password == '' || dateOfBirth == '' || direction == '') {
 		res.json({
@@ -82,6 +83,7 @@ router.post('/signup', (req, res) => {
 								email,
 								hospital,
 								isMedic,
+								lastUse,
 								name,
 								password: hashedPassword,
 								profileImage,
@@ -134,63 +136,56 @@ router.post('/signin', (req, res) => {
 			message: 'Credenciales vacías'
 		});
 	} else {
+		var updateDate = new Date();
 		// Check if user exist
-		User.find({ email })
-			.then((data) => {
-				if (data.length) {
-					// User exists
-					const hashedPassword = data[0].password;
-					bcrypt
-						.compare(password, hashedPassword)
-						.then((result) => {
-							if (result) {
-								// Password match
-								res.json({
-									status: 'SUCCESS',
-									message: 'Inicio de sesión satisfactorio',
-									data: data
-								});
-							} else {
-								res.json({
-									status: 'FAILED',
-									message: 'Contraseña inválida!'
-								});
-							}
-						})
-						.catch((err) => {
-							res.json({
-								status: 'FAILED',
-								message: 'Ocurrió un error mientras se comparaban las contraseñas'
-							});
-						});
-				} else {
-					res.json({
-						status: 'FAILED',
-						message: 'Credenciales inválidas!'
-					});
-				}
-			})
-			.catch((err) => {
+		User.findOneAndUpdate({ email }, { $set: { lastUse: updateDate } }, { new: true }, (err, doc) => {
+			if (err) {
 				res.json({
 					status: 'FAILED',
 					message: 'Se produjo un error al verificar si había un usuario existente.'
 				});
-			});
+			}
+			// User exists
+			const hashedPassword = doc.password;
+			bcrypt
+				.compare(password, hashedPassword)
+				.then((result) => {
+					if (result) {
+						// Password match
+						res.json({
+							status: 'SUCCESS',
+							message: 'Inicio de sesión satisfactorio',
+							data: [ doc ]
+						});
+					} else {
+						res.json({
+							status: 'FAILED',
+							message: 'Contraseña inválida!'
+						});
+					}
+				})
+				.catch((err) => {
+					res.json({
+						status: 'FAILED',
+						message: 'Ocurrió un error mientras se comparaban las contraseñas'
+					});
+				});
+		});
 	}
 });
 
-router.get("/patients", function(req, res) {
-	User.find({isMedic: false}, function(err, collection) {
-		 if(err) {
-			  console.log(err);
-		 } else {
+router.get('/patients', function(req, res) {
+	User.find({ isMedic: false }, function(err, collection) {
+		if (err) {
+			console.log(err);
+		} else {
 			//res.render("page", {collection: collection});
 			res.json({
 				status: 'SUCCESS',
 				message: 'Obtención satisfactoria de usuarios',
 				data: collection
 			});
-		 }
+		}
 	});
 });
 

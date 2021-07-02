@@ -8,6 +8,7 @@ const UserSchema = new Schema({
 	email: String,
 	hospital: String,
 	isMedic: Boolean,
+	lastUse: Date,
 	name: String,
 	password: String,
 	profileImage: String,

@@ -30,3 +30,5 @@ TODO:
 - ⬜️ Descargar PDF de diagnóstico por usuario (GET y más)
 
 *Nota*: De momento no hay métodos para borrar (DELETE) documentos (no es necesario)
+
+*IMPORTANTE*: Falta actualizar el diagrama de la BD (revise el código)
