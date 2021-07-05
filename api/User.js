@@ -189,4 +189,18 @@ router.get('/patients', function(req, res) {
 	});
 });
 
+router.get('/patient', function(req, res) {
+	User.findOne({ userID: req.query.userID, isMedic: false }, function(err, collection) {
+		if (err) {
+			console.log(err);
+		} else {
+			res.json({
+				status: 'SUCCESS',
+				message: 'Obtención satisfactoria de usuario',
+				data: collection
+			});
+		}
+	});
+});
+
 module.exports = router;

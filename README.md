@@ -16,19 +16,17 @@ Especificaciones:
 
 Rutas actuales:
 
-- ✅ User: Signup, Signin
-- ✅ Stadistic: Register, Update
+- ✅ User: signup (POST), signin (POST), patients (GET), patient (GET)
+- ✅ Stadistic: register (POST), updateCircularStats (POST), addWaitingPatient (POST), changeStateWaitingPatient (POST), data (GET)
 - ✅ Historial: Register, Update
 - ✅ Diagnosis: Register, Update
+
 
 TODO:
 - ⬜️ Obtener Historial de todos los pacientes (GET)
 - ⬜️ Obtener Historial por paciente (GET)
-- ✅ Obtener todos los Usuarios (GET)
 - ⬜️ Obtener Diagnósticos de un determinado Historial de un paciente (GET)
 - ⬜️ Obtener Estadísticas de un determinado médico (GET)
 - ⬜️ Descargar PDF de diagnóstico por usuario (GET y más)
 
 *Nota*: De momento no hay métodos para borrar (DELETE) documentos (no es necesario)
-
-*IMPORTANTE*: Falta actualizar el diagrama de la BD (revise el código)

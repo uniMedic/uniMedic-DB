@@ -1,13 +1,7 @@
 const { Schema, model } = require('mongoose');
 
-const HistorySchema = new Schema ({
-     patientID: {
-         type: String
-     },
-     diagnosisID: {
-         type: [String],
-         unique: true,
-         required: true
-     }
-})
-module.exports= model('History', HistorySchema);
+const HistorySchema = new Schema({
+	patientID: String,
+	diagnosisID: [ String ]
+});
+module.exports = model('History', HistorySchema);

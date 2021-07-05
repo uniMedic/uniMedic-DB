@@ -7,12 +7,8 @@ const statisticSchema = new Schema({
 	},
 	disponibility: Number,
 	demandability: Number,
-	experience: Number,
-	successPatientsID: {
-		type: [ String ]
-	},
-	waitingPatientsID: {
-		type: [ String ]
-	}
+	expertise: Number,
+	successPatientsID: [ String ],
+	waitingPatientsID: [ String ]
 });
 module.exports = model('Stadistic', statisticSchema);

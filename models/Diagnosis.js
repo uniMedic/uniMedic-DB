@@ -8,18 +8,9 @@ const diagnosisSchema = new Schema({
 		type: String,
 		required: true
 	},
-	textDiagnosis: {
-		type: String
-	},
-	imageDiagnosis: {
-		data: Buffer,
-		contentType: String
-	},
-	dateOfDiagnosis: {
-		type: Date
-	},
-	medicValidatorID: {
-		type: String
-	}
+	textDiagnosis: String,
+	imageDiagnosis: [ String ],
+	dateOfDiagnosis: Date,
+	medicValidatorID: String
 });
 module.exports = model('Diagnosis', diagnosisSchema);
