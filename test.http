@@ -1,52 +1,48 @@
 @api = http://localhost:5000
 
 # obtener todas las tareas
-GET {{api}}/user
-GET {{api}}/stadistic
+GET {{api}}/user/patients
 
-#creando estadistica para un usuario(medico)
-POST {{api}}/stadistic/performance
-Content-Type: application/json
+GET {{api}}/user/diagnosis/downloadPdf
 
-{
-    "userID": "300",
-    "state": "0",
-    "specialism": "neurologo",
-    "hospital": "Cayetano Heredia",
-    "patientID": ["200"],
-    //"patientID": "0",
-    "starts": "0"
-}
-
-
-# creando un usuario NO MEDICO
+# creando un usurio NO MEDICO
 POST {{api}}/user/signup
 Content-Type: application/json
 
 {
-    "name": "Cristhian Wiki", 
+    "userID": "TueJan182000CristhianWiki",
+    "dateOfBirth": "2000-01-18T05:00:00.000+00:00",
+    "direction": "Comas",
     "email": "user@gmail.com",
-    "password":"user98",
-    "confirmPassword":"user98",
-    "dateOfBirth":"2000-01-01T05:00:00.000Z",
-    "direction": "Puente Piedra",
+    "hospital": "",
     "isMedic": "false",
-    "userID": "0"
+    "lastUse": "2021-07-02T01:26:59.687+00:00",
+    "name":"Cristhian Wiki",
+    "password": "user98",
+    "profileImage": "",
+    "speciality": "",
+    "timeContract": ""
 }
-       
+
+
 POST {{api}}/user/signup
 Content-Type: application/json
 
 {
-    "name": "Ronaldo Lopez", 
+    "userID": "ThuOct211999RonaldoCampos",
+    "dateOfBirth": "1999-10-21T05:00:00.000+00:00",
+    "direction": "Comas",
     "email": "medic@gmail.com",
-    "password":"medic98",
-    "confirmPassword":"medic98",
-    "dateOfBirth":"2000-01-01T05:00:00.000Z",
-    "direction": "SJL",
+    "hospital": "Rezola",
     "isMedic": "true",
-    "userID": "0"
+    "lastUse": "2021-07-02T01:27:19.952+00:00",
+    "name": "Ronaldo Campos",
+    "password": "medic98",
+    "profileImage": "",
+    "speciality": "Dermatología",
+    "timeContract": "Indefinido"
 }
+
 
 //LOGIN
 POST {{api}}/user/signin
@@ -55,4 +51,66 @@ Content-Type: application/json
 {
     "email": "medic@gmail.com",
     "password":"medic98"
+}
+
+
+// CREAR ESTADÍSTICA
+POST {{api}}/stadistic/register
+Content-Type: application/json
+
+{
+    "medicID":  "ThuOct211999RonaldoCampos",
+    "disponibility": "10",
+    "demandability": "20",
+    "expertise": "70",
+    "successPatientsID": "",
+    "waitingPatientsID": "TueJan182000CristhianWiki"
+}
+
+// ACTUALIZAR ESTADÍSTICA
+POST {{api}}/stadistic/update
+Content-Type: application/json
+
+{
+    "medicID":  "ThuOct211999RonaldoCampos",
+    "disponibility": "30",
+    "demandability": "40",
+    "expertise": "70",
+    "successPatientsID": "TueJan182000CristhianWiki",
+    "waitingPatientsID": ""
+}
+
+// CREAR DIAGNÓSTICO
+POST {{api}}/diagnosis/register
+Content-Type: application/json
+
+{
+    "diagnosisID":  "150",
+    "textDiagnosis": "Leve lesión cerebral en la zona parietal",
+    "imageDiagnosis": "soy una imagen codificada en 64bits",
+    "dateOfDiagnosis": "2000-01-01T05:00:00.000Z",
+    "medicValidatorID": ""
+}
+
+POST {{api}}/diagnosis/register
+Content-Type: application/json
+
+{
+    "diagnosisID":  "151",
+    "textDiagnosis": "Fuertes daños pulmonares",
+    "imageDiagnosis": "soy una imagen codificada en 64bits",
+    "dateOfDiagnosis": "2000-01-01T05:00:00.000Z",
+    "medicValidatorID": ""
+}
+
+// ACTUALIZAR DIAGNÓSTICO
+POST {{api}}/diagnosis/update
+Content-Type: application/json
+
+{
+    "diagnosisID":  "150",
+    "textDiagnosis": "Leve lesión cerebral en la zona parietal",
+    "imageDiagnosis": "soy una imagen codificada en 64bits",
+    "dateOfDiagnosis": "2000-01-01T05:00:00.000Z",
+    "medicValidatorID": "ThuOct211999RonaldoCampos"
 }
