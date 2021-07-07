@@ -3,7 +3,7 @@
 # obtener todas las tareas
 GET {{api}}/user/patients
 
-GET {{api}}/user/diagnosis/downloadPdf
+GET {{api}}/diagnosis/downloadPdf
 
 # creando un usurio NO MEDICO
 POST {{api}}/user/signup
