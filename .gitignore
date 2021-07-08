@@ -59,5 +59,5 @@ buck-out/
 /ios/Pods/
 
 
-./diagramaDB.dia~
-./api/diagnosisPDF/*.pdf
+diagramaDB.dia~
+/api/diagnosisPDF/*.pdf
