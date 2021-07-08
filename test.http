@@ -3,7 +3,7 @@
 # obtener todas las tareas
 GET {{api}}/user/patients
 
-# creando un usurio NO MEDICO
+# creando un usuario NO MEDICO
 POST {{api}}/user/signup
 Content-Type: application/json
 
@@ -22,7 +22,7 @@ Content-Type: application/json
     "timeContract": ""
 }
 
-
+# creando un usuario MEDICO
 POST {{api}}/user/signup
 Content-Type: application/json
 
@@ -78,37 +78,51 @@ Content-Type: application/json
     "waitingPatientsID": ""
 }
 
-// CREAR DIAGNÓSTICO
+//CREAR HISTORIAL
+POST {{api}}/history/register
+Content-Type: application/json
+
+{
+    "patientID": "TueJan182000CristhianWiki",
+    "diagnosisID":  ""
+}
+
+//ACTUALIZAR HISTORIAL
+POST {{api}}/history/update
+Content-Type: application/json
+
+{
+    "patientID": "TueJan182000CristhianWiki",
+    "diagnosisID":  "diagnosis_TueJan182000CristhianWiki_TueJan182000CristhianWiki"
+}
+
+// CREAR DIAGNÓSTICO (el diagnóstico debe estar en
+// en la colección Historial)
 POST {{api}}/diagnosis/register
 Content-Type: application/json
 
 {
-    "diagnosisID":  "150",
+    "diagnosisID":  "diagnosis_TueJan182000CristhianWiki_TueJan182000CristhianWiki",
     "textDiagnosis": "Leve lesión cerebral en la zona parietal",
     "imageDiagnosis": "soy una imagen codificada en 64bits",
     "dateOfDiagnosis": "2000-01-01T05:00:00.000Z",
     "medicValidatorID": ""
 }
 
-POST {{api}}/diagnosis/register
-Content-Type: application/json
-
-{
-    "diagnosisID":  "151",
-    "textDiagnosis": "Fuertes daños pulmonares",
-    "imageDiagnosis": "soy una imagen codificada en 64bits",
-    "dateOfDiagnosis": "2000-01-01T05:00:00.000Z",
-    "medicValidatorID": ""
-}
+// OBTENER DIAGNÓSTICO INDIVIDUAL
+GET {{api}}/diagnosis/lastDiagnosis?patientID=TueJan182000CristhianWiki
 
 // ACTUALIZAR DIAGNÓSTICO
 POST {{api}}/diagnosis/update
 Content-Type: application/json
 
 {
-    "diagnosisID":  "150",
-    "textDiagnosis": "Leve lesión cerebral en la zona parietal",
+    "diagnosisID":  "diagnosis_TueJan182000CristhianWiki_TueJan182000CristhianWiki",
+    "textDiagnosis": "Leve lesión cerebral en la zona parietal GRAVE",
     "imageDiagnosis": "soy una imagen codificada en 64bits",
     "dateOfDiagnosis": "2000-01-01T05:00:00.000Z",
     "medicValidatorID": "ThuOct211999RonaldoCampos"
 }
+
+// DESCARGAR PDF
+GET {{api}}/diagnosis/downloadPDF?patientID=TueJan182000CristhianWiki&patientName=Cristhian%20Wiki&patientAge=20

@@ -9,7 +9,7 @@ const diagnosisSchema = new Schema({
 		required: true
 	},
 	textDiagnosis: String,
-	imageDiagnosis: [ String ],
+	imageDiagnosis: String,
 	dateOfDiagnosis: Date,
 	medicValidatorID: String
 });

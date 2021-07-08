@@ -18,15 +18,12 @@ Rutas actuales:
 
 - ✅ User: signup (POST), signin (POST), patients (GET), patient (GET)
 - ✅ Stadistic: register (POST), updateCircularStats (POST), addWaitingPatient (POST), changeStateWaitingPatient (POST), data (GET)
-- ✅ Historial: Register, Update
-- ✅ Diagnosis: Register, Update
+- ✅ Historial: register (POST), update (POST)
+- ✅ Diagnosis: register (POST), update (POST), lastDiagnosis (GET), downloadPDF (GET)
 
 
-TODO:
-- ⬜️ Obtener Historial de todos los pacientes (GET)
-- ⬜️ Obtener Historial por paciente (GET)
-- ⬜️ Obtener Diagnósticos de un determinado Historial de un paciente (GET)
-- ⬜️ Obtener Estadísticas de un determinado médico (GET)
-- ⬜️ Descargar PDF de diagnóstico por usuario (GET y más)
-
-*Nota*: De momento no hay métodos para borrar (DELETE) documentos (no es necesario)
+*Nota*: 
+- De momento no hay métodos para borrar (DELETE) documentos (no es necesario)
+- Los PDF descargados se nombran por diagnosis_patientID.pdf
+- Los diagnosisID se nombran con diagnosis + patientID + lastUse
+- Los userID se nombran con nameUser + birthday

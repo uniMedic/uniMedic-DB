@@ -9,7 +9,7 @@ router.post('/register', (req, res) => {
 	let { patientID, diagnosisID } = req.body;
 	patientID = patientID.trim();
 	diagnosisID = diagnosisID.trim();
-	if (patientID == '' || diagnosisID == '') {
+	if (patientID == '') {
 		res.json({
 			status: 'FAILED',
 			message: 'Hay campos vacíos!'
@@ -33,7 +33,7 @@ router.post('/register', (req, res) => {
 							} else {
 								newHistory = new History({
 									patientID,
-									diagnosisID // ARRAY
+									diagnosisID // ARRAY (se le pasa el  primer elemento)
 								});
 								newHistory
 									.save()
@@ -72,7 +72,7 @@ router.post('/register', (req, res) => {
 router.post('/update', (req, res) => {
 	let { patientID, diagnosisID } = req.body;
 	patientID = patientID.trim();
-	diagnosisID = diagnosisID.trim()
+	diagnosisID = diagnosisID.trim();
 	if (patientID == '' || diagnosisID == '') {
 		res.json({
 			status: 'FAILED',
@@ -97,34 +97,32 @@ router.post('/update', (req, res) => {
 							} else {
 								// actualizamos el historial del paciente con el nuevo diagnóstico
 								// notar que pasamos el índice 0 porque solo pasaremos un arreglo de 1 elemento
-								History.findOneAndUpdate({ patientID: patientID }, { $push: { diagnosisID: diagnosisID } })
-									.then((result) => {
-										if (result.length == 0) {
+								History.findOneAndUpdate(
+									{ patientID: patientID },
+									{ $push: { diagnosisID: diagnosisID } },
+									{ new: true },
+									(err, doc) => {
+										if (err) {
 											res.json({
 												status: 'FAILED',
-												message: 'El ID del usuario NO existe en el historial, debe crearlo!'
-											});
-										} else {
-											res.json({
-												status: 'SUCCESS',
-												message: 'Historial actualizado satisfactoriamente',
-												data: result
+												message:
+													'Se produjo un error al verificar si había un usuario existente.'
 											});
 										}
-									})
-									.catch((err) => {
 										res.json({
-											status: 'FAILED',
-											message:
-												'Ha ocurrido un error mientras se actualizaban los datos del historial!'
+											status: 'SUCCESS',
+											message: 'Se actualizó correctamente el historial del paciente',
+											data: doc
 										});
-									});
+									}
+								);
 							}
 						})
 						.catch((err) => {
 							res.json({
 								status: 'FAILED',
-								message: 'se produjo un error al momento de verificar los datos del paciente en la colección Historial!'
+								message:
+									'se produjo un error al momento de verificar los datos del paciente en la colección Historial!'
 							});
 						});
 				}
