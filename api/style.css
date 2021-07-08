@@ -1,14 +1,14 @@
-
-
 /* Font Include */
 @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@600&display=swap');
 
 body {
-    background-color: var(--body-bg);
+    background: rgb(9,9,121);
+    background: linear-gradient(56deg, rgba(9,9,121,0.5998774509803921) 0%, rgba(0,212,255,0.6502976190476191) 70%, rgba(255,255,255,1) 100%);
 }
 
 .page {
-    background: var(--white);
+    background: rgb(9,9,121);
+    background: linear-gradient(56deg, rgba(9,9,121,0.5998774509803921) 0%, rgba(0,212,255,0.6502976190476191) 70%, rgba(255,255,255,1) 100%);
     display: block;
     margin: 0 auto;
     position: relative;

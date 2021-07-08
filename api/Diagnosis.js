@@ -209,6 +209,7 @@ router.get('/downloadPdf', function(req, res) {
             <section class="header">
 				<div id="logo">
 					<img src="../logo.png">
+					<h2 style="width:19cm; text-align: right; border:2px solid #ddd; color: red">uniMedic</h2>
 				</div>
 				<div id="titulo">
 					<h2>DIAGNÓSTICO MÉDICO</h2>  
@@ -219,7 +220,7 @@ router.get('/downloadPdf', function(req, res) {
                 <div class="col-10" style="border-top:2px solid #ddd; border-bottom:2px solid #ddd; padding-top: 7px;">
                     <div class="row bb pb-3" style="padding-top: 7px; padding-bottom: 6px;">
                         <div class="col-7">
-                            <p class="content"><b>Número de expediente:</b> 151577 <br> <b>Nombre del paciente:</b>  Michael Lopez<br> <b>Fecha de nacimiento:</b> 2000-03-14</p>
+                            <p class="content"><b>Número de expediente:</b> 151577 <br> <b>Nombre del paciente:</b>  Michael Lopez Muñoz<br> <b>Fecha de nacimiento:</b> 2000-03-14</p>
                             <div class="txn mt-2"><b>Autoría:</b> app uniMedic</div>
                         </div>
                         <div class="col-5">
@@ -232,11 +233,12 @@ router.get('/downloadPdf', function(req, res) {
 			<section class="details">
 				<p style="width:19cm; text-align: center; padding-top: 1.5cm"><b>RESULTADO DE DIAGNÓSTICO</b></p>
 				<p class="diagnosis" style="width: 19cm;">El paciente presenta una anomalia en la zona izquierda del cerebro, se solicita una operación de nivel critico</p>
-				<div style="width:19cm; height:10cm; border-bottom:2px solid #ddd;"></div>
+				<p style="width:19cm; text-align: center; padding-top: 1cm"><b>OBSERVACIONES</b></p>
+				<div style="width:19cm; height:8cm; border-bottom:2px solid #ddd;"></div>
 			</section>
 
 			<section class="footer">
-			<p style="width:19cm; text-align: left;">Los resultados obtenidos por uniMedic están basados en técnicas de Deep Learning.  <br> Y están disponibles tanto en la aplicación mobil como web. </p>
+			<p style="width:19cm; text-align: left;">Los resultados obtenidos por uniMedic están basados en técnicas de Deep Learning.  <br> Y están disponibles tanto en la aplicación móvil como web. </p>
 			</section>
 
 		</div>
