@@ -1,3 +1,4 @@
+// ref: https://mugan86.medium.com/generar-pdf-desde-nodejs-con-la-librer%C3%ADa-html-pdf-c8206b28c1b7
 const express = require('express');
 const app = express();
 //const pdf = require('express-pdf');
@@ -185,9 +186,64 @@ router.get('/downloadPdf', function(req, res) {
 //  res.download('C:/Users/ACER NITRO 5/Desktop/uniMedic-DB/api/template.html', 'template.html');
 	const pdf = require('html-pdf');
 	const content = `
-	<h1>Título de prueba</h1>
-	<p>Parrafo de prueba</p>
-	`;
+	<!doctype html>
+    <html>
+	<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <!-- Custom Style -->
+    <link rel="stylesheet" href="style.css">
+
+    <title>Diagnostico</title>
+	</head>
+
+	<body>
+    <div class="my-5 page" size="A4">
+        <div class="p-5">
+            <section class="header">
+				<div id="logo">
+					<img src="../logo.png">
+				</div>
+				<div id="titulo">
+					<h2>DIAGNÓSTICO MÉDICO</h2>  
+				</div>
+            </section>
+
+            <section class="information mt-5" >
+                <div class="col-10" style="border-top:2px solid #ddd; border-bottom:2px solid #ddd; padding-top: 7px;">
+                    <div class="row bb pb-3" style="padding-top: 7px; padding-bottom: 6px;">
+                        <div class="col-7">
+                            <p class="content"><b>Número de expediente:</b> 151577 <br> <b>Nombre del paciente:</b>  Michael Lopez<br> <b>Fecha de nacimiento:</b> 2000-03-14</p>
+                            <div class="txn mt-2"><b>Autoría:</b> app uniMedic</div>
+                        </div>
+                        <div class="col-5">
+                            <p class="content"> <b>Fecha del diagnóstico:</b> 03-Jul-2021 11:25 am<br> <b>Validación:</b> Realizada<br> <b>Médico:</b> Arturo E. Velasquez</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+			<section class="details">
+				<p style="width:19cm; text-align: center; padding-top: 1.5cm"><b>RESULTADO DE DIAGNÓSTICO</b></p>
+				<p class="diagnosis" style="width: 19cm;">El paciente presenta una anomalia en la zona izquierda del cerebro, se solicita una operación de nivel critico</p>
+				<div style="width:19cm; height:10cm; border-bottom:2px solid #ddd;"></div>
+			</section>
+
+			<section class="footer">
+			<p style="width:19cm; text-align: left;">Los resultados obtenidos por uniMedic están basados en técnicas de Deep Learning.  <br> Y están disponibles tanto en la aplicación mobil como web. </p>
+			</section>
+
+		</div>
+	</div>
+    </body>
+    </html>
+`;
 
 	pdf.create(content).toFile('./html-pdf.pdf', function(err, res){
 		if(err){
